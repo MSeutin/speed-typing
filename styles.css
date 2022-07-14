@@ -1,0 +1,84 @@
+:root {
+  --background: #272727;
+  --text: #747474;
+  --cream: #eee;
+  --accent1: #ff652f;
+  --accent2: #14a76c;
+  --accent3: #ffe400;
+}
+* {
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+body,
+textarea {
+  font-size: 1.2em;
+  /* font-weight: bold; */
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  max-width: 90%;
+  border-radius: 0.4rem;
+  background-color: var(--accent1);
+  /* box-shadow: 0.1em 0.1em 0.1em 0.2em var(--accent1); */
+  padding: 0.5rem;
+}
+
+.text-display {
+  background: var(--foreground);
+  color: var(--cream);
+  margin-bottom: 1.5em;
+  margin-left: 0.5em;
+}
+
+textarea {
+  background: transparent;
+  color: var(--text);
+  border: 4px solid lightpink;
+  padding: 0.2em;
+  width: 100%;
+  height: 8em;
+  resize: none;
+  outline: none;
+  border-radius: 0.4rem;
+}
+
+textarea:focus {
+  border: 4px solid crimson;
+}
+
+.timer {
+  font-weight: bold;
+  font-size: 4em;
+  /* top: 0.5em; */
+  /* color: var(--text); */
+  color: var(--accent1);
+}
+
+/* CORRECT / INCORRECT */
+.correct {
+  color: blue;
+}
+
+.incorrect {
+  color: crimson;
+  text-decoration: underline;
+}
