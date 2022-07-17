@@ -1,9 +1,6 @@
 let url = "https://api.chucknorris.io/jokes/random";
-let textDisplay = document.querySelector(".text-display");
-let textInput = document.querySelector(".text-input");
+let text = document.querySelector(".text");
 let timer = document.querySelector(".timer");
-
-textInput.addEventListener("input", () => {});
 
 function getRandomQuote() {
   return fetch(url)
@@ -14,12 +11,11 @@ function getRandomQuote() {
 
 async function getNewQuote() {
   const quote = await getRandomQuote();
-  textInput.value = null;
-  textDisplay.textContent = "";
+  text.textContent = "";
   quote.split("").forEach((character) => {
     let span = document.createElement("span");
     span.textContent = character;
-    textDisplay.appendChild(span);
+    text.appendChild(span);
   });
   textInput.addEventListener("input", () => {
     arrayQuote = textDisplay.querySelectorAll("span");
