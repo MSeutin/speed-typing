@@ -10,40 +10,38 @@ function getRandomQuote() {
 }
 
 async function getNewQuote() {
-  const quote = await getRandomQuote();
-  text.textContent = "";
-  quote.split("").forEach((character) => {
+  let quote = await getRandomQuote();
+  const characters = quote.split("").map((char) => {
     let span = document.createElement("span");
-    span.textContent = character;
+    span.textContent = char;
     text.appendChild(span);
-  });
-  textInput.addEventListener("input", () => {
-    arrayQuote = textDisplay.querySelectorAll("span");
-    arrayValue = textInput.value.split("");
-    let correct = true;
-    arrayQuote.forEach((characterSpan, index) => {
-      const character = arrayValue[index];
-      if (character == null) {
-        characterSpan.classList.remove("correct");
-        characterSpan.classList.remove("incorrect");
-        correct = false;
-      } else if (character === characterSpan.textContent) {
-        characterSpan.classList.add("correct");
-        characterSpan.classList.remove("incorrect");
-      } else {
-        characterSpan.classList.remove("correct");
-        characterSpan.classList.add("incorrect");
-        correct = false;
-      }
-    });
-      if (correct) {
-          getNewQuote();
-          startTimer();
+    return span;
+  }); 
+  let index = 0;
+  let currentCharacter = characters[index];
+  currentCharacter.classList.add("cursor");
 
-      }
+  document.addEventListener("keyup", ({ key }) => {
+    if (currentCharacter === characters[0]) {
+      startTimer();
+    }
+    if (key === currentCharacter.textContent) {
+      currentCharacter.classList.remove("cursor");
+      currentCharacter.classList.add("correct");
+      currentCharacter.classList.remove("incorrect");
+      currentCharacter = characters[++index]
+      currentCharacter.classList.add("cursor");
+    }
+    else if (key !== currentCharacter.textContent) {
+      currentCharacter.classList.remove("cursor");
+      currentCharacter.classList.add("incorrect");
+      currentCharacter.classList.remove("corret");
+      currentCharacter = characters[++index];
+      currentCharacter.classList.add("cursor");
+    }
   });
 }
-let second = 10;
+let second = 30;
 
 function startTimer() {
     let interval = setInterval(countdown, 1000);
@@ -57,4 +55,4 @@ function startTimer() {
 }
 
 getNewQuote();
-startTimer();
+// startTimer();
