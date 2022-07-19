@@ -1,6 +1,7 @@
 let url = "https://api.chucknorris.io/jokes/random";
 let text = document.querySelector(".text");
 let timer = document.querySelector(".timer");
+let seconds = document.querySelectorAll(".seconds");
 
 function getRandomQuote() {
   return fetch(url)
@@ -11,6 +12,7 @@ function getRandomQuote() {
 
 async function getNewQuote() {
   let quote = await getRandomQuote();
+  quote = quote.toLowerCase();
   const characters = quote.split("").map((char) => {
     let span = document.createElement("span");
     span.textContent = char;
@@ -21,8 +23,11 @@ async function getNewQuote() {
   let currentCharacter = characters[index];
   currentCharacter.classList.add("cursor");
 
-  document.addEventListener("keyup", ({ key }) => {
+  // KEYDOWN, figure out the key.shiftKey problem 
+  document.addEventListener("keydown", ({ key }) => {
+    // my timer has delay
     if (currentCharacter === characters[0]) {
+      timer.textContent = "30";
       startTimer();
     }
     if (key === currentCharacter.textContent) {
@@ -41,7 +46,7 @@ async function getNewQuote() {
     }
   });
 }
-let second = 30;
+let second = 29;
 
 function startTimer() {
     let interval = setInterval(countdown, 1000);
@@ -56,3 +61,12 @@ function startTimer() {
 
 getNewQuote();
 // startTimer();
+
+
+// EVENT LISTENER ON SECONDS PICKED
+seconds.forEach((second) => {
+  second.addEventListener("click", () => {
+    document.querySelector(".timer-selection").classList.remove("timer-selection");
+    second.classList.add("timer-selection");
+  })
+});

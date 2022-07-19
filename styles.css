@@ -82,6 +82,11 @@ ul{
   padding: 0.1rem;
 }
 
+.seconds:hover{
+  color: var(--green);
+  cursor: pointer;
+}
+
 /* MIDDLE */
 .middle {
   margin-bottom: 4rem;
