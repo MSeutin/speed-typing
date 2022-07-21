@@ -101,6 +101,7 @@ ul{
 .cursor{
   background-color: var(--cream);
   border-radius: var(--radius);
+  opacity: 0.6;
 }
 
 .correct {
@@ -129,4 +130,9 @@ ul{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* OPACITY */
+.opaque{
+  opacity: 0.3;
 }
